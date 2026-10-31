@@ -1,0 +1,126 @@
+<div align="center">
+
+# Furniture User Size Fix
+
+**An SKSE plugin that adapts body position and posture for player characters and NPCs of non-standard body scale when they use furniture — including an upper-body IK module for station-type furniture.**
+
+[![Release](https://img.shields.io/github/v/release/RandyLuaW/FurnitureUserSizeFix?color=76bad9)](https://github.com/RandyLuaW/FurnitureUserSizeFix/releases/latest)
+[![License](https://img.shields.io/badge/license-source--available-lightgrey.svg)](LICENSE)
+[![C++](https://img.shields.io/badge/C%2B%2B-23-blue.svg)](https://en.cppreference.com/w/cpp/23)
+[![Platform](https://img.shields.io/badge/platform-Skyrim%20SE%201.5.97%20%7C%20AE%201.6.629%2B-lightgrey.svg)](https://github.com/RandyLuaW/FurnitureUserSizeFix/releases/latest)
+
+English ｜ [简体中文](README.zh-CN.md) ｜ [**Download**](https://github.com/RandyLuaW/FurnitureUserSizeFix/releases/latest)
+
+</div>
+
+---
+
+## What this is
+
+Skyrim authors furniture placement for a character of body scale 1.0. When a
+character's effective scale differs from 1.0 the result is visible: the character
+sinks into seats, sits too far forward or too far back relative to the surface,
+and the hands fall below workbench surfaces so tools and ingredients clip through
+the arms.
+
+This plugin corrects that at runtime, on the actor that is currently using the
+furniture:
+
+- **Positional correction** — independent depth and height offsets, addressable
+  by furniture model, by model plus seat marker, or by a single furniture
+  reference.
+- **Upper-body IK** — raises the hands to workbench level by rotating the upper
+  arms instead of lifting the whole character, so the feet stay grounded.
+
+It is a plugin-only mod: no ESP, no scripts, no record edits, and nothing is
+written into the save file.
+
+## How the effective scale is determined
+
+```
+effective scale = actor->GetScale() * node scale of "NPC" * node scale of "NPC Root [Root]"
+```
+
+A character can be made small in three different ways, and all three are covered:
+the race's default height, the actor's own scale, and node scale baked into a
+custom skeleton NIF. At scale 1.0 both correction factors evaluate to exactly
+zero, so standard-proportioned characters are never touched.
+
+## Requirements
+
+| | |
+|---|---|
+| Game | Skyrim SE 1.5.97, or Skyrim AE 1.6.629+ |
+| SKSE | 0.2.0.20+ (SE) / 2.2.3+ (AE) |
+| Address Library | the file matching your runtime |
+| Body mod | one that nulls the `DOBJ SAT1` entry (for example CBBE 3BA's `3BBB.esp`) |
+| Optional | SKSE Menu Framework, for the in-game tuning menu |
+
+## Quick start
+
+1. Install the release package with your mod manager. The installer asks for your
+   game runtime and your menu language.
+2. Enable it. No plugin file is added, so load order does not change.
+3. Sit at a chair or stand at a workbench. To tune a value, open the SKSE menu,
+   adjust the sliders (they apply immediately), then press a Save button.
+
+Configuration lives in `SKSE/Plugins/FurnitureUserSizeFix.ini` and is documented
+inline. The interface is English by default; translations are separate optional
+downloads.
+
+## Building
+
+See [docs/BUILDING.md](docs/BUILDING.md). In short: Visual Studio 2022, CMake,
+CommonLibSSE-NG, and — only if you want the menu — the SKSE Menu Framework
+header, which you obtain yourself (see
+[include/README.md](include/README.md)).
+
+## Compatibility notes
+
+- **Not compatible with Furniture Height Size Fix (FHSF).** Both apply the same
+  kind of compensation while furniture is in use; running them together
+  double-corrects and produces the opposite symptom. Enable one of them.
+- **Not compatible with FurnitureHandIK.** Its functionality is included here;
+  enabling both doubles the arm rotation.
+- **Foot IK mods** act against the whole-body lift used on station furniture.
+  Prefer the angle over the residual lift if you use one.
+- **SexLab and other scene-driven furniture** is excluded by default through the
+  `[Forbid]` section, because scene frameworks teleport actors onto furniture.
+
+## Known limitations
+
+- The grindstone is treated as a straddled seat, not a standing station. Its leg
+  clipping at small scales is a mismatch between leg spacing and the furniture's
+  own width and is intentionally not addressed.
+- Characters at scale 1.0 or above are not corrected by default. The menu offers
+  an optional switch for them; that path has never been verified in game.
+- All values are calibrated at body scale 0.65 and converted at runtime.
+
+## Safety
+
+The plugin writes nothing to the save file: it stores no co-save data, registers
+no scripts, adds no spells, perks or items, and edits no records. Every positional
+correction is applied per frame while furniture is in use and reverted as soon as
+the character stands up, so uninstalling leaves nothing behind.
+
+## Disclaimer and licensing
+
+### No warranty
+
+This software is provided "as is", without warranty of any kind. Use it at your
+own risk. Back up your save files as you would with any mod that changes actor
+placement at runtime.
+
+This project is not affiliated with, endorsed by, or sponsored by Bethesda
+Softworks, ZeniMax Media, the SKSE team, or any mod hosting site.
+
+### Free, source-available, and not for resale
+
+This project is **source-available**, not OSI open-source software. It is free to
+use, study, modify and redistribute — including in modified form — provided that
+you credit the author, link back to this repository, state any changes, keep the
+license and notice files, and **do not charge for it in any form**, including
+packaging it into a paid product or a paid mod pack.
+
+See [LICENSE](LICENSE) for the full terms and
+[THIRD-PARTY-LICENSES.txt](THIRD-PARTY-LICENSES.txt) for bundled components.

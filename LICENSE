@@ -1,0 +1,228 @@
+Furniture User Size Fix 源码许可 / Source Code License
+======================================================
+
+版本 1.0 · 2026-11-01
+Copyright (c) 2026 RandyLua. All rights reserved except as expressly granted below.
+
+本文件为英文正文与中文对照。若两者存在歧义，以**英文正文**为准。
+This file contains the authoritative English text followed by a Chinese
+translation. In case of any discrepancy, the English text prevails.
+
+
+--------------------------------------------------------------------------------
+ENGLISH (AUTHORITATIVE)
+--------------------------------------------------------------------------------
+
+1. GRANT OF RIGHTS
+
+Subject to the conditions in Section 2, you are free to:
+
+  (a) use this software for any purpose;
+  (b) study and modify the source code;
+  (c) publish new forks and derivative works;
+  (d) distribute this software and any modified version, in source or binary
+      form, **free of charge**.
+
+No fee, royalty, or permission from the author is required for the acts above.
+
+
+2. CONDITIONS (apply to every distribution)
+
+  (a) ATTRIBUTION. You must give appropriate credit to the original author
+      (RandyLua) in a manner reasonable to the medium of distribution, in a
+      place that a recipient actually sees (documentation, an "about" screen,
+      a mod description page, or the accompanying notice file).
+
+  (b) OFFICIAL REPOSITORY LINK. You must include the original official
+      repository link, unmodified and clickable where the medium allows:
+
+          https://github.com/RandyLuaW/FurnitureUserSizeFix
+
+  (c) NOTICE OF CHANGES. If you distribute a modified version, you must state
+      that it is modified and must not present it as the original software.
+
+  (d) LICENSE AND COPYRIGHT NOTICES. You must keep this file, the copyright
+      notice, and the NOTICE.txt file in any redistribution.
+
+  (e) NO PAID DISTRIBUTION. You may NOT charge any fee for this software or any
+      modified version, in any form — including selling it, offering it behind
+      a paywall or a paid subscription, gating it behind donations or
+      "early-access" tiers, or bundling it into a paid product, a paid mod pack,
+      or a paid compilation in which this software is a material part. This
+      applies whether the software is distributed in source or binary form.
+      Conditions 2(a) and 2(b) apply to every such distribution as well.
+
+
+3. RIGHTS RESERVED
+
+All rights not expressly granted in Section 1 are reserved by the author. In
+particular, and without limitation: you may not sublicense this software or any
+modified version under different terms, may not sell it, may not charge for
+distributing it, and may not use the project name "Furniture User Size Fix" or
+the author's name to endorse or promote a fork without prior written permission.
+If you distribute a modified version, it must carry the same license terms as
+this file.
+
+
+4. THIRD-PARTY COMPONENTS
+
+This software depends on third-party libraries and headers distributed under
+their own licenses (see THIRD-PARTY-LICENSES.txt). Those licenses continue to
+govern those components; nothing in this file restricts rights you have under
+them.
+
+
+5. TRADEMARKS AND ASSETS
+
+The project name, logo, and brand assets are not licensed for use in a way that
+suggests endorsement. Referential use to indicate the origin of the software is
+permitted and, for the official repository link, required.
+
+
+6. NO WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+7. TERMINATION AND CURE
+
+Any breach of Section 2 or Section 3 terminates the rights granted to you under
+this license automatically. On termination you must stop distributing the
+software.
+
+Except in cases of wilful or grossly negligent breach, if you cure the breach
+completely within 30 days after receiving written notice of it from the author,
+the rights granted to you under this license are reinstated as of the date of
+cure. The author may also grant a written exception on a case-by-case basis.
+
+
+8. VERSIONS ALREADY RELEASED
+
+Copies of earlier releases that were distributed under a different license
+remain governed by the license that accompanied them. This license applies to
+this version and to later versions released under it.
+
+
+9. PATENT LICENSE
+
+Each contributor grants you a non-exclusive, worldwide, royalty-free patent
+license to make, use, sell, offer for sale, import and otherwise run, modify and
+propagate the contents of their contribution, under any patent claims that the
+contributor can license and that are necessarily infringed by their contribution
+alone or by combination of their contribution with this software.
+
+If you institute patent litigation against the author or any contributor
+(including a cross-claim or counterclaim in a lawsuit) alleging that this
+software infringes a patent, then any patent license granted to you under this
+license for this software terminates as of the date such litigation is filed.
+
+
+10. COMMERCIAL AND ALTERNATIVE LICENSING
+
+If you want to use this software in a way this license does not permit — for
+example distributing it inside a paid product — you may request a separate
+written license from the author. Until such a license is granted in writing, the
+restrictions in this file continue to apply in full.
+
+
+--------------------------------------------------------------------------------
+中文对照（以英文正文为准 / Reference translation, English prevails）
+--------------------------------------------------------------------------------
+
+1. 授权范围
+
+在遵守第 2 节条件的前提下，你可以自由地：
+
+  (a) 将本软件用于任何目的；
+  (b) 研究与修改源代码；
+  (c) 发布分叉与衍生作品；
+  (d) **免费**分发本软件及其任何修改版本，无论以源码形式还是二进制形式。
+
+上述行为无需向作者支付任何费用、版税或另行取得许可。
+
+
+2. 条件（适用于一切分发行为）
+
+  (a) 署名。你须以与分发媒介相称的方式，在接收方实际看得到的位置（文档、
+      「关于」界面、模组说明页或随附的声明文件）注明原作者（RandyLua）。
+
+  (b) 官方仓库链接。你须包含原官方仓库链接，保持原样，在媒介允许时应当可点击：
+
+          https://github.com/RandyLuaW/FurnitureUserSizeFix
+
+  (c) 修改声明。若你分发的是修改版本，须明确声明其已被修改，不得将其作为
+      原始软件呈现。
+
+  (d) 许可与版权声明。在任何再分发中，你须保留本文件、版权声明与 NOTICE.txt。
+
+  (e) 禁止收费分发。你**不得**以任何形式就本软件或其任何修改版本收取费用，
+      包括但不限于：售卖、置于付费墙或付费订阅之后、以捐赠或「抢先体验」
+      档位作为获取条件、或打包进付费产品、付费模组整合包或付费合集中而
+      本软件构成其实质部分。无论以源码形式还是二进制形式分发，本项均适用。
+      条件 2(a) 与 2(b) 同样适用于此类分发。
+
+
+3. 保留权利
+
+第 1 节未明确授予的一切权利均由作者保留。特别地且不限于：你不得以不同条款
+再许可本软件或其任何修改版本，不得销售，不得就分发收费，未经事先书面许可
+不得使用项目名称「Furniture User Size Fix」或作者姓名来背书或推广分叉版本。
+若你分发修改版本，其须沿用与本文件相同的许可条款。
+
+
+4. 第三方组件
+
+本软件依赖以各自许可分发的第三方库与头文件（见 THIRD-PARTY-LICENSES.txt）。
+这些许可继续管辖相应组件；本文件中的任何内容都不限制你依其享有的权利。
+
+
+5. 商标与素材
+
+项目名称、标识与品牌素材未被授权用于暗示背书的使用方式。为表明软件来源的
+指示性使用是允许的，且就官方仓库链接而言是要求的。
+
+
+6. 免责声明
+
+本软件按「原样」提供，不附带任何明示或默示的担保，包括但不限于对适销性、
+特定用途适用性与非侵权性的担保。在任何情况下，作者均不对任何索赔、损害或
+其他责任负责，无论是在合同诉讼、侵权或其他方面，亦无论是否因本软件或本软件
+的使用或其他处置而产生或与之相关。
+
+
+7. 终止与补救
+
+任何违反第 2 节或第 3 节的行为将自动终止依本许可授予你的权利。终止后，你须
+停止分发本软件。
+
+除故意或重大过失违约的情形外，若你在收到作者书面通知后 30 日内完全纠正该
+违约行为，则依本许可授予你的权利自纠正之日起恢复。作者亦可视个案情况另行
+出具书面例外许可。
+
+
+8. 已发布的历史版本
+
+先前以不同许可分发的版本副本，继续适用其随附的许可。本许可适用于本版本及
+在其之下发布的后续版本。
+
+
+9. 专利授权
+
+每位贡献者授予你一项非独占、全球范围、免版税的专利许可，以便就其为专利主张
+所能许可、且必然因其贡献单独或与其与本软件结合而被侵犯的权利要求，制造、
+使用、销售、许诺销售、进口以及以其他方式运行、修改与传播其贡献内容。
+
+若你针对作者或任何贡献者提起专利诉讼（包括诉讼中的交叉请求或反诉），主张
+本软件侵犯某项专利，则依本许可就本软件授予你的任何专利许可，自该诉讼提起
+之日起终止。
+
+
+10. 商业与替代授权
+
+若你希望以本许可不允许的方式使用本软件——例如将其纳入付费产品分发——你可以
+向作者单独申请书面许可。在取得该书面许可之前，本文件中的限制继续完全适用。

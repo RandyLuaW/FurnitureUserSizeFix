@@ -1,0 +1,31 @@
+# Build files
+build/
+build_*/
+out/
+*.sln
+*.vcxproj
+*.vcxproj.*
+.vs/
+CMakeUserPresets.json
+CMakeCache.txt
+CMakeFiles/
+
+# Binaries and artefacts
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.obj
+*.lib
+*.exp
+dist/
+
+# Third-party header obtained by the builder (GPL-3.0, not redistributed here)
+include/SKSEMenuFramework.h
+
+# Editor / OS noise
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store

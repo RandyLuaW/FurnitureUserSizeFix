@@ -1,0 +1,19 @@
+Furniture User Size Fix
+Copyright (c) 2026 RandyLua
+
+This product is source-available software, not OSI open-source software.
+It is distributed under the terms in the LICENSE file in this repository,
+which permit free use, modification and redistribution but prohibit any paid
+distribution.
+
+Official repository:
+    https://github.com/RandyLuaW/FurnitureUserSizeFix
+
+Third-party components and their licenses are listed in
+THIRD-PARTY-LICENSES.txt. This project builds against, but does not
+redistribute, the SKSE Menu Framework header (GPL-3.0); see that file for
+details.
+
+This software is a plugin for The Elder Scrolls V: Skyrim and requires SKSE.
+It is not affiliated with, endorsed by, or sponsored by Bethesda Softworks,
+ZeniMax Media, the SKSE team, or any mod hosting site.
