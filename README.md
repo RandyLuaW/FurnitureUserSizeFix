@@ -4,7 +4,7 @@
 
 **An SKSE plugin that adapts body position and posture for player characters and NPCs of non-standard body scale when they use furniture — including an upper-body IK module for station-type furniture.**
 
-[![License](https://img.shields.io/badge/license-source--available-lightgrey.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-source--available%20%7C%20GPL--3.0-lightgrey.svg)](LICENSE)
 [![C++](https://img.shields.io/badge/C%2B%2B-23-blue.svg)](https://en.cppreference.com/w/cpp/23)
 [![Platform](https://img.shields.io/badge/platform-Skyrim%20SE%201.5.97%20%7C%20AE%201.6.629%2B-lightgrey.svg)](#requirements)
 [![Binaries](https://img.shields.io/badge/binaries-Nexus%20Mods-informational.svg)](#downloads)
@@ -143,8 +143,13 @@ See [LICENSE](LICENSE) for the full terms and
 ### About the compiled plugin
 
 The plugin links SKSE Menu Framework interface code for the optional in-game
-menu. That header is GPL-3.0, so **compiled binaries that include it are governed
-by GPL-3.0** and cannot carry the no-paid-distribution condition above. This is
-why compiled packages are distributed on Nexus Mods rather than from this
-repository, and why this repository contains source only. Binaries built without
-the menu header contain no GPL-3.0 code.
+menu. That header is GPL-3.0, so a binary built with it is a combined work that
+must be distributed under GPL-3.0. To make that lawful while keeping the
+source-available terms for everything else, this project is **dual licensed**:
+the terms in [LICENSE](LICENSE) are the default, and **GPL-3.0** is offered as an
+alternative (see section 11 of LICENSE and [LICENSE-GPL-3.0](LICENSE-GPL-3.0)).
+Binaries that include the menu are distributed under the GPL-3.0 option; builds
+without the menu header contain no GPL-3.0 code and stay under the default terms.
+
+Compiled packages are distributed on Nexus Mods rather than from this repository,
+which hosts source code only.

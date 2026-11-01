@@ -4,7 +4,7 @@
 
 **一个 SKSE 插件：为非标准缩放体型的玩家与 NPC 角色适配其使用家具时的身体位置与姿态，并提供上肢 IK 调整功能以适配各工作台类型家具。**
 
-[![License](https://img.shields.io/badge/license-source--available-lightgrey.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-source--available%20%7C%20GPL--3.0-lightgrey.svg)](LICENSE)
 [![C++](https://img.shields.io/badge/C%2B%2B-23-blue.svg)](https://en.cppreference.com/w/cpp/23)
 [![Platform](https://img.shields.io/badge/platform-Skyrim%20SE%201.5.97%20%7C%20AE%201.6.629%2B-lightgrey.svg)](#前置要求)
 [![Binaries](https://img.shields.io/badge/binaries-Nexus%20Mods-informational.svg)](#下载)
@@ -102,4 +102,6 @@
 
 ### 关于编译产物
 
-插件为可选菜单链接了 SKSE Menu Framework 的接口代码，该头文件为 GPL-3.0，因此**包含它的编译产物受 GPL-3.0 约束**，不能再附加上述"禁止收费分发"的条件。这也是编译包发布在 Nexus Mods、而本仓库只提供源码的原因。不包含该菜单头的构建产物不含 GPL-3.0 代码。
+插件为可选菜单链接了 SKSE Menu Framework 的接口代码，该头文件为 GPL-3.0，因此含该菜单的二进制属结合作品，必须按 GPL-3.0 分发。为使这件事合法、同时让其余情形保留源码公开条款，本项目采用**双许可**：[LICENSE](LICENSE) 中的条款为默认，另提供 **GPL-3.0** 作为替代方案（见 LICENSE 第 11 节与 [LICENSE-GPL-3.0](LICENSE-GPL-3.0)）。含菜单的二进制按 GPL-3.0 选项分发；不含菜单头的构建产物不含 GPL-3.0 代码，适用默认条款。
+
+编译好的安装包发布在 Nexus Mods，本仓库只托管源码。

@@ -130,6 +130,28 @@ written license from the author. Until such a license is granted in writing, the
 restrictions in this file continue to apply in full.
 
 
+11. ALTERNATIVE LICENSE: GNU GPL v3.0 (DUAL LICENSING)
+
+As an alternative to the terms of this file, the copyright holder additionally
+licenses this software under the **GNU General Public License, version 3**
+(the full text is in LICENSE-GPL-3.0).
+
+You may choose either set of terms. If you choose this file's terms, all of its
+conditions in Section 2 and Section 3 apply. If you choose GPL-3.0, that license
+governs your use instead, and the additional restrictions in this file
+(including the no-paid-distribution condition) do not apply to you.
+
+Why both exist: the optional in-game menu integrates with SKSE Menu Framework 3,
+whose header is GPL-3.0. A binary built with that menu is a combined work, and
+GPL-3.0 requires the whole work to be distributed under GPL-3.0 without added
+restrictions. Offering GPL-3.0 here makes such distributions lawful; the
+source-available terms remain the default for everything else.
+
+The author's own contributions are the only parts offered under both licenses.
+Third-party components keep their own licenses (see THIRD-PARTY-LICENSES.txt)
+and are not relicensed by this section.
+
+
 --------------------------------------------------------------------------------
 中文对照（以英文正文为准 / Reference translation, English prevails）
 --------------------------------------------------------------------------------
@@ -226,3 +248,20 @@ restrictions in this file continue to apply in full.
 
 若你希望以本许可不允许的方式使用本软件——例如将其纳入付费产品分发——你可以
 向作者单独申请书面许可。在取得该书面许可之前，本文件中的限制继续完全适用。
+
+
+11. 替代许可：GNU GPL v3.0（双许可）
+
+作为本文件条款的**替代方案**，版权持有人另按 **GNU 通用公共许可证第 3 版**
+授权本软件（全文见 LICENSE-GPL-3.0）。
+
+你可以在这两套条款中**任选其一**。选择本文件条款时，其第 2 节与第 3 节的
+全部条件适用；选择 GPL-3.0 时，则由该许可管辖你的使用，本文件中的附加限制
+（包括禁止收费分发）**不再适用于你**。
+
+为何并存：可选的游戏内菜单集成了 SKSE Menu Framework 3，其头文件为 GPL-3.0。
+含该菜单的二进制属结合作品，而 GPL-3.0 要求整体按 GPL-3.0 分发且不得附加限制。
+在此提供 GPL-3.0 选项使这类分发合法；其余情形仍以源码公开条款为默认。
+
+本条款仅涉及作者本人贡献的部分。第三方组件仍适用其各自的许可（见
+THIRD-PARTY-LICENSES.txt），不因本节而被重新许可。

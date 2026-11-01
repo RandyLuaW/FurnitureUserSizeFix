@@ -79,12 +79,13 @@ this repository and whether it ends up inside the compiled DLL.
 
     DISTRIBUTION NOTE. Because the optional menu integration compiles parts of
     that GPL-3.0 header into the plugin, any binary built WITH the menu is a
-    combined work governed by GPL-3.0. Compiled packages are therefore
-    distributed on the mod's Nexus Mods page rather than from this repository,
-    this repository hosts source code only, and the no-paid-distribution
-    condition of this project's own LICENSE cannot be applied to such binaries.
+    combined work governed by GPL-3.0. This project therefore offers its own
+    code under a DUAL LICENSE: the source-available terms in LICENSE remain the
+    default, and GPL-3.0 is available as an alternative (see LICENSE section 11
+    and LICENSE-GPL-3.0). A binary that includes the menu is distributed under
+    the GPL-3.0 option, so no additional restriction from LICENSE applies to it.
     A build produced WITHOUT the menu header contains none of this code and is
-    not affected.
+    distributed under the default source-available terms.
 
 --------------------------------------------------------------------------------
 Notes on the game itself
