@@ -4,12 +4,14 @@
 
 **一个 SKSE 插件：为非标准缩放体型的玩家与 NPC 角色适配其使用家具时的身体位置与姿态，并提供上肢 IK 调整功能以适配各工作台类型家具。**
 
-[![Release](https://img.shields.io/github/v/release/RandyLuaW/FurnitureUserSizeFix?color=76bad9)](https://github.com/RandyLuaW/FurnitureUserSizeFix/releases/latest)
 [![License](https://img.shields.io/badge/license-source--available-lightgrey.svg)](LICENSE)
 [![C++](https://img.shields.io/badge/C%2B%2B-23-blue.svg)](https://en.cppreference.com/w/cpp/23)
-[![Platform](https://img.shields.io/badge/platform-Skyrim%20SE%201.5.97%20%7C%20AE%201.6.629%2B-lightgrey.svg)](https://github.com/RandyLuaW/FurnitureUserSizeFix/releases/latest)
+[![Platform](https://img.shields.io/badge/platform-Skyrim%20SE%201.5.97%20%7C%20AE%201.6.629%2B-lightgrey.svg)](#前置要求)
+[![Binaries](https://img.shields.io/badge/binaries-Nexus%20Mods-informational.svg)](#下载)
 
-[English](README.md) ｜ 简体中文 ｜ [**下载**](https://github.com/RandyLuaW/FurnitureUserSizeFix/releases/latest)
+[English](README.md) ｜ 简体中文 ｜ **下载：Nexus Mods**
+
+> 本仓库**只托管源码**，不发布编译好的安装包——见[下载](#下载)。
 
 </div>
 
@@ -44,9 +46,20 @@
 | 身体 MOD | 需提供 `DOBJ SAT1` 置空（例如 CBBE 3BA 的 `3BBB.esp`） |
 | 可选 | SKSE Menu Framework，用于游戏内调参菜单 |
 
+## 下载
+
+编译好的安装包发布在 **Nexus Mods**，不在本仓库。该页面提供两个文件：
+
+| 文件 | 用途 |
+|---|---|
+| `FurnitureUserSizeFix-<版本>-FOMOD.zip` | 主包。安装向导会询问游戏运行时与菜单语言。 |
+| `FurnitureUserSizeFix-<版本>-CHS.zip` | 可选。仅简体中文菜单翻译。 |
+
+若要从源码自行构建，见 [docs/BUILDING.md](docs/BUILDING.md)。
+
 ## 快速开始
 
-1. 用 MOD 管理器安装发布包。安装向导会询问你的游戏运行时与菜单语言。
+1. 用 MOD 管理器安装下载到的安装包。向导会询问你的游戏运行时与菜单语言。
 2. 启用本 MOD。它不添加任何插件文件，因此不影响加载顺序。
 3. 坐到椅子上或站到工作台前。若需微调，打开 SKSE 菜单拖动滑块（立即生效），再按保存按钮。
 
@@ -86,3 +99,7 @@
 本项目为**源码公开**（source-available），而非 OSI 开源软件。你可以免费使用、研究、修改与再分发（含修改版本），前提是：署名原作者、附上本仓库链接、声明所做修改、保留许可与声明文件，并且**不得以任何形式收费**，包括打包进付费产品或付费整合包。
 
 完整条款见 [LICENSE](LICENSE)；随包组件清单见 [THIRD-PARTY-LICENSES.txt](THIRD-PARTY-LICENSES.txt)。
+
+### 关于编译产物
+
+插件为可选菜单链接了 SKSE Menu Framework 的接口代码，该头文件为 GPL-3.0，因此**包含它的编译产物受 GPL-3.0 约束**，不能再附加上述"禁止收费分发"的条件。这也是编译包发布在 Nexus Mods、而本仓库只提供源码的原因。不包含该菜单头的构建产物不含 GPL-3.0 代码。

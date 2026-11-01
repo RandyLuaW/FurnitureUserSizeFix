@@ -77,6 +77,15 @@ this repository and whether it ends up inside the compiled DLL.
     The GPL-3.0 header is not needed to build the plugin without the menu, and
     the released DLL is built and distributed by the author alone.
 
+    DISTRIBUTION NOTE. Because the optional menu integration compiles parts of
+    that GPL-3.0 header into the plugin, any binary built WITH the menu is a
+    combined work governed by GPL-3.0. Compiled packages are therefore
+    distributed on the mod's Nexus Mods page rather than from this repository,
+    this repository hosts source code only, and the no-paid-distribution
+    condition of this project's own LICENSE cannot be applied to such binaries.
+    A build produced WITHOUT the menu header contains none of this code and is
+    not affected.
+
 --------------------------------------------------------------------------------
 Notes on the game itself
 --------------------------------------------------------------------------------

@@ -4,12 +4,15 @@
 
 **An SKSE plugin that adapts body position and posture for player characters and NPCs of non-standard body scale when they use furniture — including an upper-body IK module for station-type furniture.**
 
-[![Release](https://img.shields.io/github/v/release/RandyLuaW/FurnitureUserSizeFix?color=76bad9)](https://github.com/RandyLuaW/FurnitureUserSizeFix/releases/latest)
 [![License](https://img.shields.io/badge/license-source--available-lightgrey.svg)](LICENSE)
 [![C++](https://img.shields.io/badge/C%2B%2B-23-blue.svg)](https://en.cppreference.com/w/cpp/23)
-[![Platform](https://img.shields.io/badge/platform-Skyrim%20SE%201.5.97%20%7C%20AE%201.6.629%2B-lightgrey.svg)](https://github.com/RandyLuaW/FurnitureUserSizeFix/releases/latest)
+[![Platform](https://img.shields.io/badge/platform-Skyrim%20SE%201.5.97%20%7C%20AE%201.6.629%2B-lightgrey.svg)](#requirements)
+[![Binaries](https://img.shields.io/badge/binaries-Nexus%20Mods-informational.svg)](#downloads)
 
-English ｜ [简体中文](README.zh-CN.md) ｜ [**Download**](https://github.com/RandyLuaW/FurnitureUserSizeFix/releases/latest)
+English ｜ [简体中文](README.zh-CN.md) ｜ **Download: Nexus Mods**
+
+> This repository hosts the **source code only**. Compiled packages are not
+> published here — see [Downloads](#downloads).
 
 </div>
 
@@ -56,10 +59,22 @@ zero, so standard-proportioned characters are never touched.
 | Body mod | one that nulls the `DOBJ SAT1` entry (for example CBBE 3BA's `3BBB.esp`) |
 | Optional | SKSE Menu Framework, for the in-game tuning menu |
 
+## Downloads
+
+Compiled packages are published on **Nexus Mods**, not in this repository. Two
+files are provided there:
+
+| File | Use |
+|---|---|
+| `FurnitureUserSizeFix-<version>-FOMOD.zip` | Main. Installer package; asks for your game runtime and menu language. |
+| `FurnitureUserSizeFix-<version>-CHS.zip` | Optional. Simplified Chinese menu translation only. |
+
+To build from source instead, see [docs/BUILDING.md](docs/BUILDING.md).
+
 ## Quick start
 
-1. Install the release package with your mod manager. The installer asks for your
-   game runtime and your menu language.
+1. Install the downloaded package with your mod manager. The installer asks for
+   your game runtime and your menu language.
 2. Enable it. No plugin file is added, so load order does not change.
 3. Sit at a chair or stand at a workbench. To tune a value, open the SKSE menu,
    adjust the sliders (they apply immediately), then press a Save button.
@@ -124,3 +139,12 @@ packaging it into a paid product or a paid mod pack.
 
 See [LICENSE](LICENSE) for the full terms and
 [THIRD-PARTY-LICENSES.txt](THIRD-PARTY-LICENSES.txt) for bundled components.
+
+### About the compiled plugin
+
+The plugin links SKSE Menu Framework interface code for the optional in-game
+menu. That header is GPL-3.0, so **compiled binaries that include it are governed
+by GPL-3.0** and cannot carry the no-paid-distribution condition above. This is
+why compiled packages are distributed on Nexus Mods rather than from this
+repository, and why this repository contains source only. Binaries built without
+the menu header contain no GPL-3.0 code.
