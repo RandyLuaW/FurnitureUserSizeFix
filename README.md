@@ -93,17 +93,56 @@ CommonLibSSE-NG, and — only if you want the menu — the SKSE Menu Framework
 header, which you obtain yourself (see
 [include/README.md](include/README.md)).
 
-## Compatibility notes
+## Compatibility
 
-- **Not compatible with Furniture Height Size Fix (FHSF).** Both apply the same
-  kind of compensation while furniture is in use; running them together
-  double-corrects and produces the opposite symptom. Enable one of them.
-- **Not compatible with FurnitureHandIK.** Its functionality is included here;
-  enabling both doubles the arm rotation.
-- **Foot IK mods** act against the whole-body lift used on station furniture.
-  Prefer the angle over the residual lift if you use one.
-- **SexLab and other scene-driven furniture** is excluded by default through the
-  `[Forbid]` section, because scene frameworks teleport actors onto furniture.
+**Furniture Height Size Fix (FHSF)?** Not compatible. Both apply a body-scale
+compensation while furniture is in use, so the correction happens twice and the
+symptom inverts: the character floats above the seat or is pushed away from the
+workbench. Enable only one of them. The furniture blacklist FHSF used is
+unnecessary here — this mod provides finer-grained tiers.
+
+**Heels Fix (Nexus mod 64442)?** Compatible, with one setting turned off. Heels
+Fix is a Papyrus + NiOverride solution: it tracks the heel offset of the boots
+and, while a character uses furniture, cancels the heel's root-node lift and
+replaces it with pelvis and knee rotation. This mod writes its own scale
+compensation to the same root node. The two are additive rather than destructive,
+because NiOverride re-applies its offset every frame — so they can coexist, but
+if Heels Fix's own scale correction stays enabled, characters get compensated
+twice.
+
+Keep Heels Fix's basic and advanced furniture fixes running, and **turn off its
+scale correction option** (the one aimed at characters without heels). Let this
+mod own the body-scale compensation. If the pose then looks slightly off, set
+this mod's *residual body lift* to zero and keep only the arm angle.
+
+The Heels Fix author notes that its scale correction necessarily conflicts with
+furniture height fix mods; this mod is a direct replacement for exactly that
+function, so the same limitation applies to it.
+
+**FurnitureHandIK?** Not compatible. Its functionality is included here and
+enabling both rotates the upper arms twice. Disable the separate plugin.
+
+**Foot IK mods (Foot IK Fix, Mu Joint Fix)?** They work against the whole-body
+lift used on station furniture: this mod raises the root node, a foot IK mod
+pulls the feet back down. Prefer the IK page's *arm raise angle* and keep
+*residual body lift* at zero. For Mu Joint Fix, follow the furniture option
+described on its own page rather than mixing two height corrections.
+
+**Improved Camera and first-person body mods?** Compatible — offsets are written
+to both of the character's 3D graphs, so the correction stays correct when
+switching between first and third person. Heels Fix's optional first-person
+camera adjustment is best left off when Improved Camera is used, per its own
+documentation.
+
+**SexLab and other scene-driven furniture?** Excluded by default through the
+`[Forbid]` section, because scene frameworks teleport actors onto furniture and
+any positional correction would make them float.
+
+**Two copies of this mod?** Do not enable two. Every offset would be applied
+twice.
+
+**RaceMenu's height slider?** Unverified whether that offset is visible to this
+mod's scale read; see *Known limitations*.
 
 ## Known limitations
 
@@ -113,6 +152,11 @@ header, which you obtain yourself (see
 - Characters at scale 1.0 or above are not corrected by default. The menu offers
   an optional switch for them; that path has never been verified in game.
 - All values are calibrated at body scale 0.65 and converted at runtime.
+
+- **RaceMenu's height slider may not be picked up.** RaceMenu applies height as a
+  node-level scale offset, while this mod reads the actor scale multiplied by the
+  skeleton node scale. Whether that offset is visible to that read is untested —
+  check `engineScale` and `effScale` on an entry line in the log.
 
 ## Safety
 
