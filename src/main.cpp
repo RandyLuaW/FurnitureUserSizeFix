@@ -89,14 +89,14 @@ namespace
         //   这里把 INI 里存的数值解释成"在 fCalibrationScale 体型下标定出来的量"，
         //   再按 (1-s)/(1-标定体型) 换算到当前 actor。玩家(0.65)系数恒为 1，手感不变。
         bool scaleCompensate = true;
-        // ★ 2026-11-01 用户决定：体型 >= 1.0 的角色**默认完全不动**。
+        // ★ 2026-11-01 设计决定：体型 >= 1.0 的角色**默认完全不动**。
         //   (0.65→1.00) 有锚点，但 s>1 是线性外推、从未实测；s=1.5 会让进深反向 36 单位。
         bool clampAboveOne = true;
         // ★ 2026-11-01 新需求：允许对体型 > 1.0 的角色也生效（默认关闭）。
         //   打开后 clampAboveOne 被覆盖，走线性外推（负向系数 = 把角色往下压）。
         //   ⚠️ 该路径**未经实机测试**，菜单里必须显示警告。
         bool allowAboveOne = false;
-        float calibrationScale = 0.65f;  // 用户所有实测值都是在 0.65 的玩家身上调的
+        float calibrationScale = 0.65f;  // 所有实测值都是在 0.65 体型的角色上调出来的
         // 探针：坐上去时把骨架各关键节点相对根节点的高度打进日志（只记录，不改行为）。
         // 目的：验证"h 能不能在运行时直接量出来"——量得出来就能做真正的自动初值。
         bool probeBones = true;
@@ -125,7 +125,7 @@ namespace
     // ENGLISH —— 汉化是把中文塞进 `_english` 字符串文件 + DSD，游戏语言设置根本不改。
     // 所以"语言由文件决定"是唯一不会判错的做法：
     //   ① Data/SKSE/Plugins/FurnitureUserSizeFix_Lang.ini 的 [Menu]   （语言包，优先级最高）
-    //   ② 主 INI 的 [Menu]                                            （用户就地覆盖）
+    //   ② 主 INI 的 [Menu]                                            （可就地覆盖）
     //   ③ 内置英文                                                     （兜底，永不空白）
     // 语言包独立成文件还有个好处：SaveConfig 只重写主 INI，永远不会把翻译抹掉。
     std::unordered_map<std::string, std::string> g_lang;
@@ -219,7 +219,7 @@ namespace
 
     void LoadLang()
     {
-        // ★ 重载时不要"先清空": 万一语言包这次没读到（文件被占用/被 MO2 覆盖顺序影响），
+        // ★ 重载时不要"先清空": 万一语言包这次没读到（文件被占用/被 mod 管理器覆盖顺序影响），
         //   清空会让界面从中文瞬间变回英文。保留上一份，读失败就沿用。
         const auto backup = g_lang;
         g_lang.clear();
@@ -279,7 +279,7 @@ namespace
     //   0 = kNone             普通坐具/椅子（所有非工作台的 benchType 都是 0）
     //   2 = kSmithingWeapon   磨刀石
     //   7 = kSmithingArmor    护甲台
-    // 只为【用户实测过】的类型给默认值。3(附魔)/5(炼金) 等没有实测数据，
+    // 只为【实测过】的类型给默认值。3(附魔)/5(炼金) 等没有实测数据，
     // 不设默认值，保持"只能手动"的现状，避免编造数字。
     std::unordered_map<std::uint32_t, Offset> g_benchDefaults;
 
@@ -304,20 +304,20 @@ namespace
     };
     std::unordered_map<RE::FormID, AnimInfo> g_animCache;
     // 连续读失败计数：家具 3D 还没加载时读不到是正常的，但菜单每帧都重试会把
-    // 一次失败变成每帧一次树遍历。累计 3 次就封存"读不到"，等下次读档或用户
+    // 一次失败变成每帧一次树遍历。累计 3 次就封存"读不到"，等下次读档或角色
     // 点「重新读取动画类型」再放开。
     std::unordered_map<RE::FormID, std::uint32_t> g_animFailCount;
 
     // actor FormID → 我们给它登记的那个根节点。
     // 【为什么需要】EXIT 时**不能**再用 a->Get3D() 反推键：第一人称/第三人称是两套 3D，
     // 家具退出瞬间 Get3D() 可能已经换成另一个（或为 null），erase 就落空 ⇒ 偏移残留 ⇒
-    // 角色浮空，要再坐一次再退出才清掉（2026-10-31 用户实测 + 日志实证）。
+    // 角色浮空，要再坐一次再退出才清掉（2026-10-31 实测 + 日志实证）。
     // 记一份"当初插的是哪个节点"，EXIT 时按记录删，才是可靠的。
     // actor FormID → 该 actor 登记过的**全部**根节点。
     // 【为什么是复数】角色有两套 3D：第三人称体 和 第一人称体（Improved Camera 之类
     // 会让第一人称也显示完整身体）。旧版一次 ENTER 只登记 `Get3D()` 返回的那一个，
     // 于是第一人称下看到的是**另一套没被抬升的身体** ⇒ 穿模。日志实证：同一件家具
-    // 两次 ENTER 的 root 指针分别是 `0x26b9dc3c100` 与 `0x26b9dc3d300`（两个节点）。
+    // 两次 ENTER 拿到的 root 指针不同（分别指向两个节点）。
     std::unordered_map<RE::FormID, std::vector<RE::NiAVObject*>> g_actorRoots;
 
     // 收集某 actor 当前存在的全部 3D 根节点（去重、去空）
@@ -652,7 +652,7 @@ namespace
     // 【为什么存局部而不是世界向量】v0.12.0 及以前存的是 ENTER 那一刻算好的世界向量。
     // 但 `TESFurnitureEvent::kEnter` 是**在角色转向家具之前**发出的，那一刻
     // `GetAngleZ()` 还是坐下前的朝向 —— 烘焙出来的世界方向就是错的，而且会一直错到
-    // 起身为止。用户实测：长椅/王座坐下偏移方向明显不对，在菜单里点一次「保存到共享值」
+    // 起身为止。实测：长椅/王座坐下偏移方向明显不对，在菜单里点一次「保存到共享值」
     // （那里会用**当前**朝向重算）就正常了；起身再坐又歪。
     // 现在改成**每帧用角色当前 yaw 重算**，顺带把"坐着时转身"也一并解决。
     struct SitEntry
@@ -733,7 +733,7 @@ namespace
     float ArmAngleFactor(float a_scale);      // 定义在后面（手臂转角的体型系数）
 
     // ---------------- 有效体型（重要）----------------
-    // 有些整合包把"矮"做在 **skeleton.nif 的节点缩放**上：race 默认身高 1.0、actor 的
+    // 有些配置把"矮"做在 **skeleton.nif 的节点缩放**上：race 默认身高 1.0、actor 的
     // GetScale() 也是 1.0，但骨架里 `NPC` / `NPC Root [Root]` 节点的 local.scale = 0.65。
     // 只看 GetScale() 会算出 (1-1.0)=0 的补偿 ⇒ 插件等于完全不工作。
     // FHSF 的 Papyrus 也是把 `GetNodeScale("NPC") × GetNodeScale("NPC Root [Root]")` 乘进去的。
@@ -1296,7 +1296,7 @@ namespace
         // 所以 flag 部分**不含**这些高位的键，永远不可能与运行时 key 相等 —— 它们是
         // v0.9/v0.10 早期按"离线读 NAM0 当 u32"生成的坏键（NAM0 其实是
         // EntryPointData.disabledPoints，只有低 16 位有效）。
-        // 这里只做告警，不擅自改用户数据。
+        // 这里只做告警，不擅自改使用者数据。
         std::size_t legacyKeys = 0;
         for (const auto& [k, off] : g_markerOverrides) {
             const auto at = k.rfind('@');
@@ -1324,8 +1324,8 @@ namespace
 
     // ---------------- 计算某 actor 坐在某家具上的偏移 ----------------
     // 统一的取值链，菜单与运行时共用，避免两处优先级写岔：
-    //   1. [Markers]   模型@坐点            —— 用户对这件家具亲手量过的值
-    //   2. [Models]    纯模型               —— 用户对同模型量过、但没区分坐点
+    //   1. [Markers]   模型@坐点            —— 针对这件家具手工标定的值
+    //   2. [Models]    纯模型               —— 针对同模型标定、但未区分坐点
     //   3. [Furniture] 单件 FormID          —— 只作用于一件
     //   4. [Defaults]  benchType != 0       —— 工作台专用（磨刀石/护甲台…）
     //   5. [AnimType]  动画档（★ 只对 kSleep/kLean，kSit 一律不走这一档）
@@ -1337,9 +1337,9 @@ namespace
     // 压过工作台专用值，磨刀石会被套上椅子的抬升量。反过来，第 5 步排在
     // benchType==0 之前也是必须的：床和椅子的 benchType 都是 0，只有动画档能把
     // "躺"和"坐"分开。
-    // ★ v0.10.1 追加：动画档**只管 kSleep/kLean**。理由见第 5 步的注释（用户实测
+    // ★ v0.10.1 追加：动画档**只管 kSleep/kLean**。理由见第 5 步的注释（实测
     //   锻炉吃到了椅子值）。kSit 的家具一律由 [Defaults] benchType 与逐件/逐模型值管理。
-    // ★ v0.11.2 把 [Furniture] 提到第 1 位：用户反馈"给单件家具保存了特定值，按下保存以后
+    // ★ v0.11.2 把 [Furniture] 提到第 1 位：问题反馈"给单件家具保存了特定值，按下保存以后
     //   菜单里也看不见单件值，还是只显示坐点通用值"。根因就是它的优先级原来排在 [Markers]
     //   之后 ⇒ 单件值永远被共享键遮住，保存完 applyToCurrent() 立刻又算回共享值、滑块弹回。
     //   「只保存到这件」的语义本来就是"最具体"，必须赢。
@@ -1397,7 +1397,7 @@ namespace
 
         // 5) 动画档。**只对不含 kSit 的家具生效**（即床 kSleep / 靠 kLean）。
         //    kSit 覆盖面太广（椅子/长凳/王座 + 铁砧/锻炉/熔炉/制革架/附魔台/炼金台），
-        //    一个共享值会串到这些东西上 —— 2026-10-31 用户实测："给椅子存的值，使用锻炉
+        //    一个共享值会串到这些东西上 —— 2026-10-31 实测："给椅子存的值，使用锻炉
         //    的时候也被应用了"（日志：anvil benchType=1 来源=[AnimType] 偏移=…6.29）。
         //    kSit 一律交给 [Defaults] benchType 与逐件/逐模型值，动画档不插手。
         const auto anim = GetAnimInfo(a_furn);
@@ -1420,7 +1420,7 @@ namespace
             //   床(kSleep) 与靠(kLean) 的家具 benchType 同样是 0，若也吃这份"坐"值，
             //   等于拿坐姿中位数去套躺姿 —— 没有任何依据（v0.9.0 就存在这个隐患，
             //   被怀疑是"床会浮空"的来源）。
-            //   动画类型读得到、且不含 kSit 位 ⇒ not fixed，等用户在 [AnimType] 里按档补值。
+            //   动画类型读得到、且不含 kSit 位 ⇒ not fixed，等使用者在 [AnimType] 里按档补值。
             //   读不到动画类型时保持旧行为（放行），避免"读不到"变成"连原来有的修复也没了"。
             if (anim.valid && anim.mask != 0 && (anim.mask & 1) == 0) {
                 a_outSrc = OffsetSource::kNone;
@@ -1441,13 +1441,13 @@ namespace
     //                                  lift = (1−s) × h
     //   ② fCalibrationScale = 0.65   ⇒ 配置里的数是"在 0.65 体型下标定出来的抬升量"，
     //                                  lift = 值 × (1−s)/(1−0.65)（等价于 h = 值/0.35）
-    //   依据：FHSF 的公式骨架就是 (1−s)×Adjust；用户实测磨刀石 10.63 对 FHSF 的 0.35×30=10.50。
+    //   依据：FHSF 的公式骨架就是 (1−s)×Adjust；实测磨刀石 10.63 对 FHSF 的 0.35×30=10.50。
     //   ★ 允许负值：s > 1（高大角色）时 (1−s) < 0，会把角色往下压 —— 同样是正确行为，
     //     以前 clamp 到 0 等于"比 1.0 高的人完全not fixed"，对发布版是缺陷。
     // 体型 ≠ 1 才补偿；**体型 ≥ 1 直接不生效**（可配置关闭）。
     // 理由：(0.65→1.00) 这段有锚点（必须落在 0），但 s>1 是纯线性外推、从未实测；
     //  s=1.5 时三轴系数会到 −1.43（进深反向 36 单位），很可能把人推到家具外面去。
-    //  用户 2026-11-01 决定：超过 1.0 的角色一律不动。
+    //  2026-11-01 设计决定：超过 1.0 的角色一律不动。
     bool ScaleAboveOneExempt(float a_scale)
     {
         return g_config.clampAboveOne && !g_config.allowAboveOne && a_scale >= 1.0f;
@@ -1510,7 +1510,7 @@ namespace
         Offset off{};
         OffsetSource src = OffsetSource::kNone;
         if (ResolveOverride(a_furn, off, src)) {
-            // 只有用户为某件/某型家具显式保存过的才算"手动"；
+            // 只有为某件/某型家具显式保存过的才算"手动"；
             // [Defaults] / [AnimType] 这两档是分类默认值，不算手动
             a_outManual = (src == OffsetSource::kMarker || src == OffsetSource::kModel || src == OffsetSource::kFormID);
             if (a_outSrc) {
@@ -2379,7 +2379,7 @@ namespace
                                 // ★ v0.10.1：EXIT **完全不依赖** Get3D() 是否可用。
                                 //   旧版第一步就 `if (!root) return;`，而第一人称退出家具的瞬间
                                 //   Get3D() 常常为 null（1st/3rd 两套 3D 正在切换）⇒ 直接返回、
-                                //   偏移永不清 ⇒ 角色浮空，要再坐一次再退出才归零（用户实测）。
+                                //   偏移永不清 ⇒ 角色浮空，要再坐一次再退出才归零（实测）。
                                 //   现在按 ENTER 时登记的 root 删，root 为 null 也照样能清。
                                 std::size_t removed = 0;
                                 if (const auto it = g_actorRoots.find(actorID); it != g_actorRoots.end()) {
