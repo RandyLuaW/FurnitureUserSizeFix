@@ -2454,7 +2454,7 @@ namespace
 }
 
 SKSEPluginInfo(
-    .Version = REL::Version{ 1, 2, 0, 0 },
+    .Version = REL::Version{ 1, 3, 0, 0 },
     .Name = "FurnitureUserSizeFix"sv,
     .Author = "RandyLua"sv,
     .SupportEmail = ""sv,
@@ -2483,7 +2483,7 @@ SKSEPluginLoad(const SKSE::LoadInterface* a_skse)
     spdlog::set_default_logger(std::move(log));
     spdlog::set_pattern("[%H:%M:%S.%e] [%l] %v");
 
-    logger::info("FurnitureUserSizeFix v1.2.0 loading...");
+    logger::info("FurnitureUserSizeFix v1.3.0 loading...");
     logger::info("Offsets are shared per model@marker: tune the same model+marker once");
     logger::info("Lookup order: [Markers] model@marker > [Models] model > [Furniture] per-reference > [Defaults] benchType > [AnimType] (kSleep/kLean only) > built-in formula");
 
