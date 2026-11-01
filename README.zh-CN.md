@@ -6,7 +6,7 @@
 
 [![License](https://img.shields.io/badge/license-source--available%20%7C%20GPL--3.0-lightgrey.svg)](LICENSE)
 [![C++](https://img.shields.io/badge/C%2B%2B-23-blue.svg)](https://en.cppreference.com/w/cpp/23)
-[![Platform](https://img.shields.io/badge/platform-Skyrim%20SE%201.5.97%20%7C%20AE%201.6.629%2B-lightgrey.svg)](#前置要求)
+[![Platform](https://img.shields.io/badge/platform-Skyrim%20SE%201.5.97%20%7C%20AE%201.6.629%20to%201.6.1170-lightgrey.svg)](#前置要求)
 [![Binaries](https://img.shields.io/badge/binaries-Nexus%20Mods-informational.svg)](#下载)
 
 [English](README.md) ｜ 简体中文 ｜ **下载：Nexus Mods**
@@ -40,7 +40,7 @@
 
 | | |
 |---|---|
-| 游戏 | Skyrim SE 1.5.97，或 Skyrim AE 1.6.629 及以上 |
+| 游戏 | Skyrim SE 1.5.97，或 Skyrim AE 1.6.629 – 1.6.1170 |
 | SKSE | SE 需 0.2.0.20+，AE 需 2.2.3+ |
 | Address Library | 与你的运行时版本匹配的文件 |
 | 身体 MOD | 需提供 `DOBJ SAT1` 置空（例如 CBBE 3BA 的 `3BBB.esp`） |
@@ -56,6 +56,9 @@
 | `FurnitureUserSizeFix-<版本>-CHS.zip` | 可选。仅简体中文菜单翻译。 |
 
 若要从源码自行构建，见 [docs/BUILDING.md](docs/BUILDING.md)。
+
+> **运行时支持范围。** 支持：Skyrim SE 1.5.97 与 Skyrim AE 1.6.629 – 1.6.1170。
+> **暂不支持 Skyrim 1.7.x（1.7.99 / 1.7.104 及更高）**——该版本更换了 Address Library 的数据库格式，必须用更新版 CommonLibSSE-NG 重新编译。
 
 ## 快速开始
 

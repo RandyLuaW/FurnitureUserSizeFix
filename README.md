@@ -6,7 +6,7 @@
 
 [![License](https://img.shields.io/badge/license-source--available%20%7C%20GPL--3.0-lightgrey.svg)](LICENSE)
 [![C++](https://img.shields.io/badge/C%2B%2B-23-blue.svg)](https://en.cppreference.com/w/cpp/23)
-[![Platform](https://img.shields.io/badge/platform-Skyrim%20SE%201.5.97%20%7C%20AE%201.6.629%2B-lightgrey.svg)](#requirements)
+[![Platform](https://img.shields.io/badge/platform-Skyrim%20SE%201.5.97%20%7C%20AE%201.6.629%20to%201.6.1170-lightgrey.svg)](#requirements)
 [![Binaries](https://img.shields.io/badge/binaries-Nexus%20Mods-informational.svg)](#downloads)
 
 English ｜ [简体中文](README.zh-CN.md) ｜ **Download: Nexus Mods**
@@ -53,7 +53,7 @@ zero, so standard-proportioned characters are never touched.
 
 | | |
 |---|---|
-| Game | Skyrim SE 1.5.97, or Skyrim AE 1.6.629+ |
+| Game | Skyrim SE 1.5.97, or Skyrim AE 1.6.629 – 1.6.1170 |
 | SKSE | 0.2.0.20+ (SE) / 2.2.3+ (AE) |
 | Address Library | the file matching your runtime |
 | Body mod | one that nulls the `DOBJ SAT1` entry (for example CBBE 3BA's `3BBB.esp`) |
@@ -70,6 +70,9 @@ files are provided there:
 | `FurnitureUserSizeFix-<version>-CHS.zip` | Optional. Simplified Chinese menu translation only. |
 
 To build from source instead, see [docs/BUILDING.md](docs/BUILDING.md).
+
+> **Runtime support.** Supported: Skyrim SE 1.5.97 and Skyrim AE 1.6.629 - 1.6.1170.
+> **Skyrim 1.7.x (1.7.99 / 1.7.104 and later) is not supported yet** — those builds changed the Address Library database format and the plugin must be rebuilt against a newer CommonLibSSE-NG.
 
 ## Quick start
 
