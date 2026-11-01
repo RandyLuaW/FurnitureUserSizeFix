@@ -119,9 +119,6 @@ The Heels Fix author notes that its scale correction necessarily conflicts with
 furniture height fix mods; this mod is a direct replacement for exactly that
 function, so the same limitation applies to it.
 
-**FurnitureHandIK?** Not compatible. Its functionality is included here and
-enabling both rotates the upper arms twice. Disable the separate plugin.
-
 **Foot IK mods (Foot IK Fix, Mu Joint Fix)?** They work against the whole-body
 lift used on station furniture: this mod raises the root node, a foot IK mod
 pulls the feet back down. Prefer the IK page's *arm raise angle* and keep

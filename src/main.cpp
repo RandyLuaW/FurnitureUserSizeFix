@@ -101,7 +101,7 @@ namespace
         // 目的：验证"h 能不能在运行时直接量出来"——量得出来就能做真正的自动初值。
         bool probeBones = true;
 
-        // ---- 上肢 IK（v0.13.0 从 FurnitureHandIK 合并进来）----
+        // ---- 上肢 IK（只旋转上臂抬高手部，根节点不动）----
         // 站立式工作台上"抬整个人"会让脚离地；改为**只绕肩旋转上臂**把手抬起来，
         // 根节点不动 ⇒ 脚踏实。这是 h 之外的第二套手段，两者可叠加。
         bool  useArmIK = true;        // false = 完全回到 v0.12.5 的老行为
@@ -727,7 +727,7 @@ namespace
 
     std::uint64_t g_applyCount = 0;
 
-    // ---------------- 上肢 IK（从 FurnitureHandIK 合并）----------------
+    // ---------------- 上肢 IK ----------------
     bool EnsureHooked(RE::NiAVObject* a_node, const char* a_tag);   // 定义在后面
     float SizeFactor(float a_scale);          // 定义在后面（三轴/抬升的体型系数）
     float ArmAngleFactor(float a_scale);      // 定义在后面（手臂转角的体型系数）
@@ -1638,7 +1638,7 @@ namespace
 
     // 地址是否可执行（**不要求**在 SkyrimSE.exe 的 .text 里）
     //
-    // 【为什么放宽】2026-10-31 实测：`FurnitureHandIK` 探针加载时，本插件已经把这个 vtable 条目
+    // 【为什么放宽】2026-10-31 实测：另一个 SKSE 插件先加载、已把该 vtable 条目
     // 换成了自己的 hook，于是探针看到"指针不在 .text"就拒绝安装，一条数据都采不到。
     // 反过来也一样：若探针先加载，本插件会拒绝安装 ⇒ **主功能静默失效**，这是很危险的隐患。
     // ⇒ 判据改为"是不是可执行内存"（VirtualQuery 看 protect 的可执行位），
